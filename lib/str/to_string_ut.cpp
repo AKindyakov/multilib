@@ -28,8 +28,9 @@ void userPrintableTypeTest() {
 void userNotPrintableTypeTest() {
     std::cerr << " - userNotPrintableTypeTest\n";
     auto ans = Lib::toString(UserTypeNotPrintable{});
-    auto rightAns = std::string("<not printable>");
-    UT_ASSERT_EQUAL(ans, rightAns);
+    auto rightAns = std::string("is not printable>");
+    UT_ASSERT_TRUE(ans.size() > rightAns.size());
+    UT_ASSERT_EQUAL(ans.substr(ans.size() - rightAns.size(), rightAns.size()), rightAns);
 }
 
 void builtinTypesTest() {

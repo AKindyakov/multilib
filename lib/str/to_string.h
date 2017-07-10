@@ -4,6 +4,7 @@
 
 #include <sstream>
 #include <string>
+#include <typeinfo>
 
 
 namespace Lib {
@@ -28,7 +29,9 @@ template<
     , bool fake = true
 >
 inline std::string toString(const Type& /*value*/) {
-    return "<not printable>";
+    auto out = std::ostringstream{};
+    out << "<type '" << typeid(Type).name() << "' is not printable>";
+    return out.str();
 }
 
 }  // namespace Lib
